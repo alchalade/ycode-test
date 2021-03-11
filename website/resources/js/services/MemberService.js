@@ -1,25 +1,22 @@
 import Repository from "../repositories/RepositoryFactory";
-import { MemberCreationFailedException } from "../exceptions/MemberCreationFailedException";
+import {MemberCreationFailedException} from "../exceptions/MemberCreationFailedException";
 
 export class MemberService {
     constructor() {
-        this.repository = Repository.get('member_repository')
+        this.repository = Repository.get('member_repository');
         this.maxFileSize = 100; // 100 MB
         this.byteToMB = 10485760;
     }
 
     validateEvent(event) {
         const allowedEvents = ["drop", "change"];
-
         if (!allowedEvents.includes(event.type)) {
             throw new TypeError('Event is not whitelisted');
         }
         const fileLocation = event.type === "change" ? "srcElement" : "dataTransfer";
 
         if (event[fileLocation].files.length !== 1) {
-            console.log(event[fileLocation].files);
-            throw new RangeError('find a goo;d excepiton message')
-
+            throw new RangeError('Only one file is supported');
         }
         return event[fileLocation].files[0];
     }
@@ -31,7 +28,7 @@ export class MemberService {
         if (image.type !== 'image/jpeg') {
             throw new TypeError('This image type is not supported. Only JPEG files');
         }
-        return image
+        return image;
     }
 
     async create(memberData) {
@@ -42,17 +39,16 @@ export class MemberService {
             formData.append('image', memberData.image);
         }
 
-        const { data, status } = await this.repository.create(formData, { header: { 'Content-Type': 'image/jpg' } })
-        console.log('STATUS', status);
+        const {data, status} = await this.repository.create(formData, {header: {'Content-Type': 'image/jpg'}});
         if (status !== 201) {
-            return new MemberCreationFailedException('Failed to Create Team Member', status)
+            return new MemberCreationFailedException('Failed to Create Team Member', status);
         }
     }
 
     async list() {
-        const { data, status } = await this.repository.list();
+        const {data, status} = await this.repository.list();
         if (status !== 200) {
-            return new MemberCreationFailedException('Failed to Create Team Member', status)
+            return new MemberCreationFailedException('Failed to Create Team Member', status);
         }
         return data;
     }
