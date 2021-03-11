@@ -23,8 +23,7 @@ My first impression about the assignment was; "okay its a form push it to the ap
   One is responsible for pushing up to 10 Members to Airtable, and the other one is downloading the data and put it into Redis.
   Both jobs are running each minute. 
 
-  **PS:** I could use Spatie's scheduler package to schedule the commands in seconds-range to use 100% of the rate limit. But I thought it would not 
-   the point where you say "Its totally a no-go!".
+  **PS:** I could use Spatie's scheduler package to schedule the commands in seconds-range to use 100% of the rate limit. But I thought it would be over engineering.
 
   
 - The blue colour used on the H1 should be swapped out for #3C8999.
@@ -40,6 +39,8 @@ My first impression about the assignment was; "okay its a form push it to the ap
   I checked it both on JS side and on Laravel's side (RequestValidationRule) 
   
 
+###What else could I done ? 
+- Paginate the member list while adding them into cache
 
 
 
