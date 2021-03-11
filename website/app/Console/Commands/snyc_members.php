@@ -36,7 +36,7 @@ class snyc_members extends Command
      *
      * @return void
      */
-    public function __construct(MemberService  $memberService, CacheService $cacheService)
+    public function __construct(MemberService $memberService, CacheService $cacheService)
     {
         $this->memberService = $memberService;
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+
 //normally this kind of sensetive data should be read out form secret source
 class ApiRepository implements IApiRepository
 {

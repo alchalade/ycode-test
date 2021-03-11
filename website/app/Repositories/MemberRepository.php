@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Repositories;
 
 use App\Exceptions\MemberCreationFailedException;
@@ -25,10 +24,9 @@ class MemberRepository extends BaseRepository implements IMemberRepository
         $this->member = $member;
     }
 
-
     /**
      * @param $data
-     * @return string
+     * @return array
      * @throws MemberCreationFailedException
      */
     public function create($data): array
@@ -37,14 +35,20 @@ class MemberRepository extends BaseRepository implements IMemberRepository
         try {
             $response = $this->post($url, $data);
         } catch (ConnectionException $exception) {
-            Log::critical('Create new member request failed with following reason : ' . $exception->getMessage());
-            throw new MemberCreationFailedException('The remote server is too busy to take the request now. Please try it again in few seconds');
+            Log::critical('Create new member request failed with following reason : '
+                . $exception->getMessage());
+            throw new MemberCreationFailedException('The remote server is too busy to '
+                . 'take the request now. Please try it again in few seconds');
         } catch (\Exception $exception) {
             Log::critical('Unexpected error while creating member : ' . $exception->getMessage());
-            throw new MemberCreationFailedException('Something weird happened on our end. Please try it again later');
+            throw new MemberCreationFailedException('Something weird happened'
+                . ' on our end. Please try it again later');
         }
         if ($response->status() !== 201 && $response->status() !== 200) {
-            Log::critical('Unable to create the member.  : ', ['status' => $response->status(), 'body' => $response->body()]);
+            Log::critical(
+                'Unable to create the member.  : ',
+                ['status' => $response->status(), 'body' => $response->body()]
+            );
             throw new MemberCreationFailedException('Unable to handle the request. Please verify your data');
         }
         return $response->json();
@@ -57,13 +61,18 @@ class MemberRepository extends BaseRepository implements IMemberRepository
             $response = $this->get($url);
         } catch (ConnectionException $exception) {
             Log::critical('Get all members request failed with following reason : ' . $exception->getMessage());
-            throw new MemberCreationFailedException('The remote server is too busy to take the request now. Please try it again in few seconds');
+            throw new MemberCreationFailedException('The remote server is too busy to' .
+                ' take the request now. Please try it again in few seconds');
         } catch (\Exception $exception) {
             Log::critical('Unexpected error while getting member list : ' . $exception->getMessage());
-            throw new MemberCreationFailedException('Something weird happened on our end. Please try it again later');
+            throw new MemberCreationFailedException('Something weird happened on our end.'
+                . ' Please try it again later');
         }
         if ($response->status() !== 200) {
-            Log::critical('Unable to get the member list.  : ', ['url' => $url, 'status' => $response->status(), 'body' => $response->body()]);
+            Log::critical(
+                'Unable to get the member list.  : ',
+                ['url' => $url, 'status' => $response->status(), 'body' => $response->body()]
+            );
             throw new MemberCreationFailedException('Unable to handle the request. Please verify your data');
         }
         return $response->json();
@@ -94,6 +103,4 @@ class MemberRepository extends BaseRepository implements IMemberRepository
     {
         return $this->apiService->baseUrl() . $this->resource;
     }
-
-
 }

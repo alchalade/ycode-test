@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-
 use App\Services\ApiService;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 abstract class BaseRepository
@@ -25,13 +25,13 @@ abstract class BaseRepository
         'content-type' => 'application/json'
     ];
 
-    public function get($url, $data = [], $includeBearer = true, $headers = [], $mergeHeaders = true): \Illuminate\Http\Client\Response
+    public function get($url, $data = [], $includeBearer = true, $headers = [], $mergeHeaders = true): Response
     {
         $request = Http::withHeaders($this->requestHeaders($headers, $mergeHeaders));
         return $this->tokenizeRequest($request, $includeBearer)->get($url, $data);
     }
 
-    public function post($url, $data, $includeBearer = true, $headers = [], $mergeHeaders = true): \Illuminate\Http\Client\Response
+    public function post($url, $data, $includeBearer = true, $headers = [], $mergeHeaders = true): Response
     {
         $request = Http::withHeaders($this->requestHeaders($headers, $mergeHeaders));
         return $this->tokenizeRequest($request, $includeBearer)->post($url, $data);

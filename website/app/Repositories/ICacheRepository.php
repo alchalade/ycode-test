@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Repositories;
-
 
 interface ICacheRepository
 {
     /**
-     * Sets a key and stores the data with it 
+     * Sets a key and stores the data with it
      */
     public function set($name, $data);
 

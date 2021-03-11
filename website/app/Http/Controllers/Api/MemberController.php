@@ -36,10 +36,9 @@ class MemberController extends Controller
     /**
      * @param MemberCreateRequest $request
      */
-    public function store(MemberCreateRequest $request )
+    public function store(MemberCreateRequest $request)
     {
-        $member =$this->memberService->addToWaitingList($request->validated());
+        $member = $this->memberService->addToWaitingList($request->validated());
         return (MemberResource::make($member))->response()->setStatusCode(201);
     }
-
 }

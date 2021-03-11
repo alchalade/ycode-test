@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use App\Exceptions\NoCacheAvailableException;
 use App\Repositories\ICacheRepository;
 use App\Repositories\IMemberRepository;
@@ -55,7 +54,7 @@ class MemberService
                     'Email' => $member->email,
                 ]
             ];
-            if($member->image_url) {
+            if ($member->image_url) {
                 $memberData['fields']['Photo'] = [
                     ["url" => $member->image_url]
                 ];
@@ -80,7 +79,5 @@ class MemberService
             'email' => $data['email'],
             'image_path' => $image_path
         ]);
-
     }
-
 }

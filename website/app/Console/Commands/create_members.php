@@ -35,7 +35,7 @@ class create_members extends Command
      * Create a new command instance.
      *
      */
-    public function __construct(MemberService  $memberService, CacheService $cacheService)
+    public function __construct(MemberService $memberService, CacheService $cacheService)
     {
         parent::__construct();
         $this->memberService = $memberService;

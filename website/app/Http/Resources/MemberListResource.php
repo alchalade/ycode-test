@@ -19,8 +19,8 @@ class MemberListResource extends JsonResource
             'id' => $this->resource['id'],
             'name' => $this->resource['fields']['Name'],
             'email' => $this->resource['fields']['Email'],
-            'avatar' => Arr::exists($this->resource['fields'], 'Photo') ? $this->resource['fields']['Photo'][0]['thumbnails']['small']['url'] : null
+            'avatar' => Arr::exists($this->resource['fields'], 'Photo') ?
+                $this->resource['fields']['Photo'][0]['thumbnails']['small']['url'] : null
         ];
     }
-
 }

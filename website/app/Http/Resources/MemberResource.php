@@ -21,5 +21,4 @@ class MemberResource extends JsonResource
             'avatar' => $this->image_url
         ];
     }
-
 }

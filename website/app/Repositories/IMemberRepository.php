@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-
 use Illuminate\Support\Collection;
 
-interface IMemberRepository {
+interface IMemberRepository
+{
 
     /**
      * Creates members on external resource
      * @param $data
      * @return array
      */
-    public function create($data):array;
+    public function create($data): array;
 
     /**
      * Gets the member list from the external resource
