@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,4 +13,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
-    .postCss('resources/css/app.css', 'public/css', []);
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+    ]).vue({ version: 2 });
+
+if (!mix.inProduction()) {
+    mix.sourceMaps();
+}
