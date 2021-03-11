@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\PeopleController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\PersonController::class, 'index']);

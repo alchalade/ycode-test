@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class PeopleController extends Controller
+class PersonController extends Controller
 {
 
 	public function index()
