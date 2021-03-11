@@ -9,21 +9,21 @@ Use `ninanung/nginx-proxy` as reverse proxy if you own a M1 Mac
 Please add **127.0.0.1   ycode.local**  to your `/etc/hosts`
 
 
-I worked on this test-assignment while I was also taking care of my kids and I was not able to commit each bit and piece but I hope you'll understand it.
+I worked on this test-assignment while I was also taking care of my kids, and I was not able to commit each bit and piece but I hope you'll understand it.
 
 
-My first impression about the assignment was; "okay its a form push it to the api, get data back from it and done", but after I got into I was positively suprised. Congrats, it was a great task.
+My first impression about the assignment was; "okay it's a form, push it to the api and get data back from it", but after I got into it, I was positively surprised. Congrats, it was a great task.
 
 ### Your requests and what I did
 
 - The website should be able to withstand thousands of visitors at one time.
   
-  **MY PART** Without Swarm or Kubernetes it would be pretty hard to overstand simultaneously thousands of visitors even
+  **MY PART** Personally, without Swarm or Kubernetes it would be pretty hard to overstand (for apache/ningx) simultaneously thousands of visitors even
   with Varnish and co. **:)** . However, I think your point was to avoid to pull data from Airtable on each request. I overcome the **rate_limit** of AirTable by putting the data into Redis. I created two commands for handling the synchronization.
   One is responsible for pushing up to 10 Members to Airtable, and the other one is downloading the data and put it into Redis.
-  Both jobs are running each minute. 
+  Both jobs are running each minute. I could use Laravel's integrated `Cache` mechanism, but I had fun to integrate that basic caching logic.
 
-  **PS:** I could use Spatie's scheduler package to schedule the commands in seconds-range to use 100% of the rate limit. But I thought it would be over engineering.
+  **PS:** I could also use Spatie's scheduler package to schedule the commands in seconds-range to use 100% of the rate limit. However, I thought it would be over engineering.
 
   
 - The blue colour used on the H1 should be swapped out for #3C8999.
