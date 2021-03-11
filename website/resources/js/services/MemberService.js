@@ -58,6 +58,7 @@ export class MemberService {
         const fakeUser =  {
             'avatar': user.image,
             'name' : user.name,
+            'email' : user.email,
             'id': -1,
         };
 
