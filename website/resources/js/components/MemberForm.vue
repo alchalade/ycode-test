@@ -93,7 +93,7 @@
                 </label>
                 <p class="pl-1">or drag and drop</p>
               </div>
-              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 100MB</p>
             </div>
           </div>
           <div
