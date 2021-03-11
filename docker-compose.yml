@@ -21,14 +21,14 @@ services:
     volumes:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
       - ./website:/var/www/html
-  
+
 
 
   'composer':
     container_name: ycode_composer
     image: composer:2.0.2
     restart: 'no'
-    command: install
+    command: "composer install"
     volumes:
       - ./website:/app
 
