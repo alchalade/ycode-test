@@ -1,5 +1,6 @@
 import Repository from "../repositories/RepositoryFactory";
 import {MemberCreationFailedException} from "../exceptions/MemberCreationFailedException";
+import {EventBus} from "../EventBus";
 
 export class MemberService {
     constructor() {
@@ -51,5 +52,15 @@ export class MemberService {
             return new MemberCreationFailedException('Failed to Create Team Member', status);
         }
         return data;
+    }
+
+    addFakeMember(user) {
+        const fakeUser =  {
+            'avatar': user.image,
+            'name' : user.name,
+            'id': -1,
+        };
+
+        EventBus.$emit('addMember', fakeUser)
     }
 }
