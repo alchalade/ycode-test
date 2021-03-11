@@ -15,7 +15,7 @@ export default {
     props: {
         avatar: {
             required: true,
-            validator: prop => typeof prop === 'string' ||typeof prop === 'Blob' || prop === null
+            validator: prop => typeof prop === 'string' || prop === null
         }
     }
 }
