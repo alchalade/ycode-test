@@ -28,7 +28,6 @@ export default {
     getMembers() {
       this.memberService.list().then((list) => {
         this.memberList = list.data;
-        console.log(this.memberList);
       });
     },
   },
