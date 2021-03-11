@@ -1,0 +1,95 @@
+
+version: '3.1'
+
+services:
+  'laravel':
+    container_name: laravel_ycode
+    build:
+      context: docker/
+      dockerfile: dockerfile_php
+    image: laravel/php:73
+
+    environment:
+      VIRTUAL_HOST: ycode.local
+    depends_on:
+      - maria
+      - redis
+    links:
+      - maria:db
+      - redis:redis
+
+    volumes:
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./website:/var/www/html
+  
+
+
+  'composer':
+    container_name: ycode_composer
+    image: composer:2.0.2
+    restart: 'no'
+    command: install
+    volumes:
+      - ./website:/app
+
+  'node':
+    container_name: ycode_node
+    build:
+      context: docker/
+      dockerfile: dockerfile_npm
+    volumes:
+      - ./website:/home/node/app
+    command:  /bin/sh -c "/tmp/start.sh"
+
+
+  'phpmyadmin':
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      VIRTUAL_HOST: db.ycode.local
+
+    depends_on:
+      - maria
+    links:
+      - maria:db
+
+
+  'maria':
+    container_name: maria
+    image: mariadb:10.3
+    environment:
+      MYSQL_ROOT_PASSWORD: laravel
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    volumes:
+      - ./DB/mysql:/var/lib/mysql
+  cron:
+    container_name: cron_job
+    build:
+      context: docker/
+      dockerfile: dockerfile_php_cron
+    image: laravel/cron
+    depends_on:
+      - maria
+    links:
+      - maria:db
+      - redis:redis
+    volumes:
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./website:/var/www/html
+  redis:
+    image: redis:5
+    volumes:
+      - ./redis/:/data
+
+  nginxproxy:
+    container_name: nginx-proxy
+    image: jwilder/nginx-proxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx_proxy/proxy.conf:/etc/nginx/proxy.conf
+      - ./nginx_proxy/conf.d:/etc/nginx/conf.d
+      - ./nginx_proxy/certs:/etc/nginx/certs
+      - ./nginx_proxy/vhost.d:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
