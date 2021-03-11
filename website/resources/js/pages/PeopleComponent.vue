@@ -7,15 +7,17 @@
         <member-list />
       </div>
     </div>
+      <alert-box/>
   </div>
 </template>
 
 <script>
 import memberForm from "../components/MemberForm";
 import MemberList from "../components/MemberList";
+import AlertBox from "../components/AlertBox";
 
 export default {
-  components: { MemberList, memberForm },
+  components: {AlertBox, MemberList, memberForm },
   props: [],
   data() {
     return {};
