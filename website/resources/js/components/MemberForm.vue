@@ -184,7 +184,6 @@ export default {
                 type: 'info',
                 title: 'Sending Data',
                 message: 'Please wait...',
-                duration: 1500,
                 position: 'center'
             })
             this.memberService
@@ -203,7 +202,6 @@ export default {
                     // TODO : log error on backend
                 });
 
-            this.memberService.addFakeMember(this.user);
             this.resetForm();
         },
         resetForm() {

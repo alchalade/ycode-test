@@ -44,6 +44,7 @@ export class MemberService {
         if (status !== 201) {
             return new MemberCreationFailedException('Failed to Create Team Member', status);
         }
+        this.addFakeMember(memberData)
     }
 
     async list() {
