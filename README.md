@@ -44,6 +44,7 @@ My first impression about the assignment was; "okay its a form push it to the ap
 - I observed, that Airtable does not include the Name and Email fields when they are manually deleted from the source. 
   Basing on the E-mail I sent to my contact person Izabella, I assumed that the form is the only place where a member
   could be stored
+- Add eslint to lint the Frontend.
 
 
 
