@@ -4,6 +4,7 @@
 Firstly I dockerized the project for the case that you want to check it on your own local environment.
 The goal of it was to prevent **but it works on my pc :)**
 
+Use `ninanung/nginx-proxy` as reverse proxy if you own a M1 Mac 
 
 Please add **127.0.0.1   ycode.local**  to your `/etc/hosts`
 
