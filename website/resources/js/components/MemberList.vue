@@ -42,7 +42,7 @@ export default {
                 };
                 reader.readAsDataURL(member.avatar);
             }
-            this.memberList.push(member);
+            this.memberList.unshift(member);
         }
     },
 };
