@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        //in production Spatie's scheduler package could be used . It allows to schedule in seconds
+        $schedule->command('members:create')->everyMinute();
+        $schedule->command('members:sync')->everyMinute();
     }
 
     /**
