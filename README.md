@@ -39,8 +39,11 @@ My first impression about the assignment was; "okay its a form push it to the ap
   I checked it both on JS side and on Laravel's side (RequestValidationRule) 
   
 
-###What else could I done ? 
+###What else could be done ? 
 - Paginate the member list while adding them into cache
+- I observed, that Airtable does not include the Name and Email fields when they are manually deleted from the source. 
+  Basing on the E-mail I sent to my contact person Izabella, I assumed that the form is the only place where a member
+  could be stored
 
 
 
