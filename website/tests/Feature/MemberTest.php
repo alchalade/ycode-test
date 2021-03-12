@@ -64,8 +64,6 @@ class MemberTest extends TestCase
             'image' => new UploadedFile(resource_path('test-files/avatar.png'), 'avatar.png', null, null,  true),
         ];
         $response = $this->post('/api/members', $memberData);
-
-        $response->assertStatus(302);
         $this->assertDatabaseCount('members', 0);
 
     }
